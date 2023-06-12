@@ -1,0 +1,61 @@
+const mongoose   = require('mongoose')
+const UserSchema = mongoose.Schema({
+    googleId:{
+       type:String,
+       require:true
+    },
+    firstName:{
+        type:String,
+        required:true
+    },
+    lastName:{
+        type:String,
+        default:''
+    },
+    displayName:{
+        type:String,
+        default:''
+    },
+    email:{
+        type:String,
+        required:true,
+        lowercase:true,
+        unique:true,
+        trim:true
+    },
+    gender:{
+        type:String,
+        default:''
+    },
+    about:{
+        type:String,
+        default:''
+    },
+    image:{
+        type:String,
+        default:''
+    },
+    cover:{
+        type:String,
+        default:'./img/theme/light/code-1.jpg'
+    },
+    role:{
+        type:Number,
+        default:null
+        
+    },
+    birthdate:{
+        type:String,
+        default:''
+    },
+    phone:{
+        type:String,
+        default:''
+    },
+    createdAt:{
+        type:Number,
+        default:Date.now()
+    }
+
+})
+mongoose.model('users',UserSchema)

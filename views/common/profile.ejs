@@ -1,0 +1,38 @@
+<div
+  data-toggle="sticky"
+  data-sticky-offset="30"
+  data-negative-margin=".card-profile-cover"
+  style="transition: all 0.5s ease-in-out"
+>
+  <div
+    class="card card-profile"
+    style="border: 5px solid black; border-radius: 10px"
+  >
+    <div class="card-profile-cover">
+      <img
+        alt="Image placeholder"
+        src="<%= user.cover %>"
+        class="card-img-top"
+      />
+    </div>
+    <a href="/profile/settings" class="mx-auto">
+      <img
+        alt="Image placeholder"
+        src="<%= user.image %>"
+        class="card-profile-image avatar rounded-circle shadow hover-shadow-lg"
+      />
+    </a>
+    <div class="card-body p-3 pt-0 text-center">
+      <h5 class="mb-0"><%= user.displayName %></h5>
+      <% if(user.role===0){ %>
+          Creator
+    <%  } else { %>
+   Student
+  <%  } %>
+
+      <div class="avatar-group hover-avatar-ungroup mb-3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- <h1>user name <%= user.displayName %></h1> -->
