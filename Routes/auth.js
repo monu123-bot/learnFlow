@@ -7,15 +7,15 @@ router.get("/google",passport.authenticate("google",{
 
 }),(req,res)=>{
 
-    console.log('inside call')
-    console.log(req.body)
+    // console.log('inside call')
+    // console.log(req.body)
 })
 router.get("/google/callback",passport.authenticate('google',{failureRedirect:'/'}),(req,res)=>{
     const user = req.user
     if (user.role === null){
         res.redirect('/signup')
     }
-    console.log('call back is called')
+    // console.log('call back is called')
     res.redirect('/dashboard')
 })
 router.get('/logout',(req,res)=>{

@@ -16,7 +16,7 @@ router.get('/',ensureGuest,(req,res)=>{
     res.render('login.ejs')
 })
 router.get("/dashboard",ensureAuth,ensureSignUp,fetchAllPost,async (req,res)=>{
-    console.log('inside dashbo')
+    // console.log('inside dashbo')
     
     
     // const posts = ['post1','post2','post3','post4','post5']

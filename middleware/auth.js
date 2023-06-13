@@ -1,9 +1,9 @@
 const ensureAuth = (req,res,next)=>{
-    console.log('inside auth 1')
+    // console.log('inside auth 1')
     // console.log(req.user.firstName)
     
    if (req.isAuthenticated()){
-    console.log('inside auth 2',)
+    // console.log('inside auth 2',)
     res.locals.user = req.user
     
 
@@ -11,14 +11,14 @@ const ensureAuth = (req,res,next)=>{
     return next()
    }
    else{
-    console.log('inside auth 3')
+    // console.log('inside auth 3')
     res.redirect('/')
    }
    
 }
 
 const ensureGuest = (req,res,next)=>{
-   console.log(req.user)
+//    console.log(req.user)
     if (req.isAuthenticated()){
         res.redirect('/dashboard')
        }

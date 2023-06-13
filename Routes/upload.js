@@ -112,11 +112,11 @@ const getPresignedUrl = async (fileName,contentType) => {
 router.get('/presignedUrl', async(req,res)=>{
 
     const filename = req.query.filename.split('.')[0] + '-' + uuid() + '.'+ req.query.contenttype.split('/')[1]
-    console.log(filename)
+    // console.log(filename)
     const contenttype = req.query.contenttype
     // console.log(filename)
     const url= await getPresignedUrl(filename,contenttype)
-    console.log(url)
+    // console.log(url)
     res.send({
         url
     })

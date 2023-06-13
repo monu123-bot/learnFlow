@@ -22,10 +22,10 @@ router.patch('/update',async (req,res)=>{
     }
     
     const resp = await user.save()
-    console.log(profileData)
+    // console.log(profileData)
     res.send(resp)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send('there is an error in updating profile ',error)
     }
     

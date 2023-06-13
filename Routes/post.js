@@ -17,7 +17,7 @@ router.get('/create/new',ensureAuth,ensureSignUp,ensureCreator,(req,res)=>{
 
 router.post('/create/new',ensureAuth,ensureSignUp,ensureCreator,async (req,res)=>{
 
-    console.log(req.body.title,req.body.description)
+    // console.log(req.body.title,req.body.description)
 
     try {
         const post =  new posts ({
@@ -41,7 +41,7 @@ router.get('/:id',async (req,res)=>{
 
         const author = await users.findById(post.userID)
         const comment = await comments.find({postID:req.params.id,parentID:null})
-        console.log('comment',comment)
+        // console.log('comment',comment)
         const postdate = moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
         res.locals.user = author
         res.locals.postDate = postdate
