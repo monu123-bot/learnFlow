@@ -35,7 +35,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-console.log(Date.now())
+// console.log(Date.now())
 
 const posts = mongoose.model('posts')
 const users = mongoose.model('users')
@@ -71,7 +71,7 @@ passport.use(
         console.log('error in signin ',error)
         done(error,null)
     }
-    console.log(profile)
+    // console.log(profile)
 })
 )
 
