@@ -46,7 +46,7 @@ passport.use(
             clientID:'573232329729-to3qocc857ujfjcmgpimkfp9m2pfcpmt.apps.googleusercontent.com',
             clientSecret:'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',
             // callbackURL:'http://localhost:5000/auth/google/callback',
-            callbackURL:'/auth/google/callback',
+            callbackURL:'https://learnflow3.onrender.com/auth/google/callback',
         },
  async (accessToken,refreshToken,profile,done)=>{
     const newUser = {
