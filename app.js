@@ -58,7 +58,7 @@ passport.use(
         image:profile.photos[0].value,
     }
     try {
-        let user = await users.findOne({googleID:profile.googleID})
+        let user = await users.findOne({googleID:profile.id})
         if (user){
             //user exists
             console.log('user already exists',user)
