@@ -15,8 +15,8 @@ const uploadRouter = require('./Routes/upload')
 const commentRouter = require('./Routes/comment')
 
 
-// client id = 573232329729-to3qocc857ujfjcmgpimkfp9m2pfcpmt.apps.googleusercontent.com
-// client secret = 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
+// client id = 573232329729-v60bp1ljfd83tudkhrjk351f5bak0vu3.apps.googleusercontent.com
+// client secret = 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
 
 const mongoose = require('mongoose')
 app.set("veiw engine","ejs")
@@ -38,17 +38,19 @@ app.use(passport.session())
 // console.log(Date.now())
 
 const posts = mongoose.model('posts')
+console.log(posts)
 const users = mongoose.model('users')
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 passport.use(
    new GoogleStrategy 
       (  {
-            clientID:'573232329729-to3qocc857ujfjcmgpimkfp9m2pfcpmt.apps.googleusercontent.com',
-            clientSecret:'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',
+            clientID:'573232329729-v60bp1ljfd83tudkhrjk351f5bak0vu3.apps.googleusercontent.com',
+            clientSecret:'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',
             // callbackURL:'http://localhost:5000/auth/google/callback',
-            callbackURL:'https://learnflow5.onrender.com/auth/google/callback',
+            callbackURL:'http://localhost:5000/auth/google/callback',
         },
  async (accessToken,refreshToken,profile,done)=>{
+    // console.log("google id ",profile.id)
     const newUser = {
         googleID:profile.id,
         firstName:profile.name.givenName,
@@ -58,10 +60,10 @@ passport.use(
         image:profile.photos[0].value,
     }
     try {
-        let user = await users.findOne({googleID:profile.googleID})
+        let user = await users.findOne({googleID:profile.id})
         if (user){
             //user exists
-            console.log('user already exists',user)
+            // console.log('user already exists',user)
             done(null,user)
         }
         else{
@@ -69,7 +71,7 @@ passport.use(
             done(null,user)
         }
     } catch (error) {
-        console.log('error in signin ',error)
+        // console.log('error in signin ',error)
         done(error,null)
     }
     // console.log(profile)

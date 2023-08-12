@@ -65,6 +65,18 @@
                 style="cursor: pointer"
                 onclick='window.location.replace("/post/<%= post._id %>")'
               >
+              <% if (user.role==0 && post.userID==user._id) { %>
+                <a href="/delete_post/<%- post._id %>"  class="btn btn-icon btn-group-nav shadow btn-neutral" > 
+                  
+                  <span class="btn-inner--text d-none d-md-inline-block">
+                  
+                  Delete
+                  
+                  </span
+                  >
+                   </a>
+            <%  } %>
+          
                 <div class="card-header pt-4 pb-2">
                   <div class="card overflow-hidden border-0">
                     <!-- <img

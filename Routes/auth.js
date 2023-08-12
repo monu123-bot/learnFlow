@@ -10,18 +10,28 @@ router.get("/google",passport.authenticate("google",{
     // console.log('inside call')
     // console.log(req.body)
 })
+
 router.get("/google/callback",passport.authenticate('google',{failureRedirect:'/'}),(req,res)=>{
     const user = req.user
+
     if (user.role === null){
         res.redirect('/signup')
     }
     // console.log('call back is called')
-    res.redirect('/dashboard')
+    else{
+        
+        
+        // console.log("user id is ",user_id)
+        res.redirect('/dashboard')
+    }
+    
 })
-router.get('/logout',(req,res)=>{
-    req.logout(()=>{
-     res.redirect('/')
-    })
+router.get("/logout",(req,res)=>{
+    // console.log('insode logout')
+    req.logout();
+    req.session.destroy(()=>{
+      res.redirect('/');
+    });
     // res.redirect('/')
 })
 module.exports = router

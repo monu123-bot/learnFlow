@@ -43,7 +43,7 @@ router.get('/:id',async (req,res)=>{
         const comment = await comments.find({postID:req.params.id,parentID:null})
         // console.log('comment',comment)
         const postdate = moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
-        res.locals.user = author
+        res.locals.user = req.user
         res.locals.postDate = postdate
     res.locals.post = post
     res.locals.comments = comment

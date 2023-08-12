@@ -1,6 +1,6 @@
 const mongoose   = require('mongoose')
 const UserSchema = mongoose.Schema({
-    googleId:{
+    googleID:{
        type:String,
        require:true
     },
