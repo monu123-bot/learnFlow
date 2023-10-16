@@ -20,6 +20,7 @@ const ensureAuth = (req,res,next)=>{
 const ensureGuest = (req,res,next)=>{
 //    console.log(req.user)
     if (req.isAuthenticated()){
+        
         res.redirect('/dashboard')
        }
        next()

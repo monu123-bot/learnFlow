@@ -38,7 +38,7 @@ app.use(passport.session())
 // console.log(Date.now())
 
 const posts = mongoose.model('posts')
-console.log(posts)
+
 const users = mongoose.model('users')
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 passport.use(
@@ -47,11 +47,8 @@ passport.use(
             clientID:'573232329729-v60bp1ljfd83tudkhrjk351f5bak0vu3.apps.googleusercontent.com',
             clientSecret:'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',
             // callbackURL:'http://localhost:5000/auth/google/callback',
-<<<<<<< HEAD
             callbackURL:'http://localhost:5000/auth/google/callback',
-=======
-            callbackURL:'https://learnflow2.onrender.com/auth/google/callback',
->>>>>>> d5f209ffc45eeebb6ec2ba32e171d378a8b597d4
+
         },
  async (accessToken,refreshToken,profile,done)=>{
     // console.log("google id ",profile.id)
