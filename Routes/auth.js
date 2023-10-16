@@ -26,12 +26,10 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:'/
     }
     
 })
-router.get("/logout",(req,res)=>{
-    // console.log('insode logout')
-    req.logout();
-    req.session.destroy(()=>{
-      res.redirect('/');
-    });
+router.get('/logout',(req,res)=>{
+    req.logout(()=>{
+     res.redirect('/')
+    })
     // res.redirect('/')
 })
 module.exports = router
