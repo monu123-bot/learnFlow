@@ -13,10 +13,9 @@ const profileRouter = require('./Routes/profile')
 const postRouter = require('./Routes/post')
 const uploadRouter = require('./Routes/upload')
 const commentRouter = require('./Routes/comment')
+require('dotenv').config()
 
 
-// client id = 573232329729-v60bp1ljfd83tudkhrjk351f5bak0vu3.apps.googleusercontent.com
-// client secret = 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
 
 const mongoose = require('mongoose')
 app.set("veiw engine","ejs")
@@ -44,8 +43,8 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy
 passport.use(
    new GoogleStrategy 
       (  {
-            clientID:'573232329729-v60bp1ljfd83tudkhrjk351f5bak0vu3.apps.googleusercontent.com',
-            clientSecret:'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',
+            clientID:process.env.CLIENTID,
+            clientSecret:process.env.CLIENTSECRET,
             // callbackURL:'http://localhost:5000/auth/google/callback',
             callbackURL:'http://localhost:5000/auth/google/callback',
 

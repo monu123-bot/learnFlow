@@ -8,7 +8,7 @@
 
 const {S3Client,PutObjectCommand} = require('@aws-sdk/client-s3')
 const {getSignedUrl} = require('@aws-sdk/s3-request-presigner')
-
+require('dotenv').config()
 const express = require('express')
 
 // const AWS = require("aws-sdk");
@@ -22,8 +22,10 @@ const bucket = new S3Client({
   
   region: "ap-south-1",
   credentials:{
-    accessKeyId: 'AKIATHMZ4BURI3Z4GNMN',
-  secretAccessKey: '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',
+    accessKeyId: process.env.ACCESSKEYID,
+  secretAccessKey: process.env.SECRETACCESSKEY,
+  //   accessKeyId: 'AKIATHMZ4BURI3Z4GNMN',
+  // secretAccessKey: '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',
   }
   
 });
