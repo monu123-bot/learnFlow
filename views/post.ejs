@@ -58,7 +58,7 @@
                     href="blog-article.html#"
                     class="avatar rounded-circle mr-3"
                   >
-                    <img alt="Image placeholder" src="<%= user.image %>" />
+                    <img alt="Image placeholder" src="<%= author.image %>" />
                   </a>
                 </div>
                 <div
@@ -67,13 +67,52 @@
                 >
                   <div>
                     <span class="d-block h6 mb-0"
-                      ><%= user.displayName %></span
+                      ><%= author.displayName %></span
                     >
                     <span class="text-sm text-muted"><%= postDate %></span>
                   </div>
+
+
+                  <!-- new added -->
+                  <div>
+                    <a href="#" class="text-muted"></a>
+                      <%= post.views %> <i class="far fa-eye mr-3 fa"></i
+                    ></a>
+
+                    <span id="like-count"><%= post.likes %></span> Likes 
+                    <a
+                      style="cursor: pointer"
+                      data-toggle="tooltip"
+                      data-original-title="Share Link"
+                      class="ml-3"
+                      id="shareBtn"
+                      onclick="share()"
+                    >
+                      <i
+                        class="fas fa-share-square"
+                        style="transform: scale(1.5)"
+                      ></i>
+                    </a>
+                  </div>
+
+
+
+
                 </div>
               </div>
             </div>
+          <!-- new dded -->
+            <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            data-id="<%= post._id %>"
+            poster="<%= post.thumbnailKey %>"
+            data-setup="{}"
+          >
+            <source src="/video/<%= post._id %>" type="video/mp4" />
+          </video>
           </div>
         </div>
       </section>
@@ -368,5 +407,19 @@
         }
       };
     </script>
+     <script>
+      console.log("HERE");
+    const share = () => {
+      // Copy the text inside the text field
+          navigator.clipboard.writeText(window.location.href);
+      
+      const shareBtn = document.querySelector("#shareBtn");
+      console.log(shareBtn);
+      shareBtn.setAttribute("data-original-title", "Copied to Clipboard");
+      setTimeout(() => {
+        shareBtn.setAttribute("data-original-title", "Share Link");
+      }, 5000);
+    };
+  </script>
   </body>
 </html>

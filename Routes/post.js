@@ -38,11 +38,13 @@ router.get('/:id',async (req,res)=>{
         if (!post){
             return res.render('error-404.ejs')
         }
-
+        console.log('post user id',post.userID)
         const author = await users.findById(post.userID)
+        console.log("author",  author)
         const comment = await comments.find({postID:req.params.id,parentID:null})
         // console.log('comment',comment)
         const postdate = moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
+        res.locals.author = author
         res.locals.user = req.user
         res.locals.postDate = postdate
     res.locals.post = post
@@ -53,5 +55,6 @@ router.get('/:id',async (req,res)=>{
     }
     
 })
+
 
 module.exports = router

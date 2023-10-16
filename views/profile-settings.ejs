@@ -126,7 +126,7 @@
                                 <form id="change-cover">
                                   <input
                                     type="file"
-                                    id="file-input-2"
+                                    id="cover"
                                     name="file"
                                     accept="image/*"
                                   />
@@ -461,7 +461,31 @@
     }
   });
 </script>
--->
+ -->
+ <script>
+  const changeCoverForm = document.querySelector('#change-cover')
+  changeCoverForm.addEventListener('submit',async (e)=>{
+    console.log('inside coverchange')
+     e.preventDefault()
+     const coverFile = document.querySelector('#cover').files[0]
+    // console.log(avatarFile)
+     const urlresp = await fetch(`/get/presignedUrl?filename=${coverFile.name}&contenttype=${coverFile.type}`,{method:'GET'})
+     console.log("presigned url ",urlresp)
+     const urldata = await urlresp.json()
+     console.log( "pres ",  urldata.url,urldata.filename)
+
+     const uploadResponse = await fetch(urldata.url,{
+      method:"PUT",
+      // mode:"no-cors",
+      headers:{"Content-Type":coverFile.type},
+      body:coverFile
+    })
+    console.log(uploadResponse)
+    const changecover = await fetch(`/profile/changecover?filename=${urldata.filename}`,{method:'GET'})
+    console.log(changecover)
+
+  })
+</script>
 <script>
   const changeAvatarForm = document.querySelector('#change-avatar')
   changeAvatarForm.addEventListener('submit',async (e)=>{
@@ -469,9 +493,9 @@
      const avatarFile = document.querySelector('#avatar').files[0]
     // console.log(avatarFile)
      const urlresp = await fetch(`/get/presignedUrl?filename=${avatarFile.name}&contenttype=${avatarFile.type}`,{method:'GET'})
-     console.log(urlresp)
+     console.log("presigned url ",urlresp)
      const urldata = await urlresp.json()
-     console.log(urldata)
+     console.log( "pres ",  urldata.url,urldata.filename)
 
      const uploadResponse = await fetch(urldata.url,{
       method:"PUT",
@@ -480,6 +504,8 @@
       body:avatarFile
     })
     console.log(uploadResponse)
+    const changeavatar = await fetch(`/profile/changeavatar?filename=${urldata.filename}`,{method:'GET'})
+    console.log(changeavatar)
 
   })
 </script>

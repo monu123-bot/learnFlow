@@ -4,8 +4,32 @@ const router = express.Router()
 const {ensureAuth} = require('../middleware/auth')
 const {ensureSignUp} = require('../middleware/user')
 const { default: mongoose } = require('mongoose')
+const { route } = require('./auth')
 require('../models/User')
+router.get("/changeavatar", async (req,res)=>{
+    const user = req.user
+    console.log(user,req.query.filename)
+    const imgName = 'https://d3aqmms23svd08.cloudfront.net/'+req.query.filename
 
+    user['image']=  imgName
+    const resp = await user.save()
+    res.send(resp)
+
+    
+})
+
+router.get("/changecover", async (req,res)=>{
+    const user = req.user
+    console.log(user,req.query.filename)
+    const imgName = 'https://d3aqmms23svd08.cloudfront.net/'+req.query.filename
+
+    user['cover']=  imgName
+    const resp = await user.save()
+    console.log('after saving',user)
+    res.send(resp)
+
+    
+})
 
 
 router.get('/settings',ensureAuth,ensureSignUp,(req,res)=>{

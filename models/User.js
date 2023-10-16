@@ -56,6 +56,7 @@ const UserSchema = mongoose.Schema({
         type:Number,
         default:Date.now()
     }
+    
 
 })
 mongoose.model('users',UserSchema)
