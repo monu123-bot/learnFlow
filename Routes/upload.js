@@ -51,7 +51,7 @@ router.get("/video", (req, res) => {
   const range = req.headers.range;
   const params = {
     Bucket: "my-video-bucket-123",
-    Key: "Placewit - WebD English (2023-02-26 11_16 GMT 5_30).mp4",
+    Key: "videoBucketKey",
   };
 
   s3.headObject(params, (err, data) => {
